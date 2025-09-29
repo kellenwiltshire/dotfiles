@@ -73,7 +73,7 @@ source "$HOME/.spaceshiprc.zsh"
 zstyle ':omz:update' mode auto      
 zstyle ':omz:update' frequency 14
 
-plugins=(vscode zsh-autosuggestions git)
+plugins=(vscode zsh-autosuggestions git zsh-syntax-highlighting you-should-use zsh-bat)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,7 +86,6 @@ export NVM_DIR="$HOME/.nvm"
 . /opt/homebrew/bin/hs-opskit-rc-zsh
 
 alias gco="git checkout"
-
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/kellen.wiltshire/.docker/completions $fpath)
