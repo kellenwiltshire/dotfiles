@@ -86,11 +86,6 @@ export NVM_DIR="$HOME/.nvm"
 . /opt/homebrew/bin/hs-opskit-rc-zsh
 
 alias gco="git checkout"
-alias signup="cd code/hs-app-signup && cursor ."
-alias homepage="cd code/hs-app-home-page && cursor ."
-alias yarn1="yarn set version 1.22.22"
-alias yarn3="yarn set version 3.8.7"
-alias yarn4="yarn set version 4.6.0"
 
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
