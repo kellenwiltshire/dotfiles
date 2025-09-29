@@ -1,3 +1,8 @@
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  # If you're using macOS, you'll want this enabled
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="spaceship"
@@ -73,7 +78,7 @@ source "$HOME/.spaceshiprc.zsh"
 zstyle ':omz:update' mode auto      
 zstyle ':omz:update' frequency 14
 
-plugins=(vscode zsh-autosuggestions git zsh-syntax-highlighting you-should-use zsh-bat)
+plugins=(vscode zsh-autosuggestions git zsh-syntax-highlighting you-should-use zsh-bat zoxide fzf-tab)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -92,6 +97,27 @@ fpath=(/Users/kellen.wiltshire/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
 
 autoload -U add-zsh-hook
 load-nvmrc() {
@@ -113,4 +139,4 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
